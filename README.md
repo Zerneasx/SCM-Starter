@@ -1,12 +1,58 @@
-# Starter Next/Hardhat Project
+# Smart Wallet Assessment Contract
 
-After cloning the github, you will want to do the following to get the code running on your computer.
+## Overview
 
-1. Inside the project directory, in the terminal type: npm i
-2. Open two additional terminals in your VS code
-3. In the second terminal type: npx hardhat node
-4. In the third terminal, type: npx hardhat run --network localhost scripts/deploy.js
-5. Back in the first terminal, type npm run dev to launch the front-end.
+This repository contains a Solidity smart contract named Assessment. The contract is designed to manage an account with deposit, withdraw, and transfer functionalities. It includes an owner, balance tracking, and events for deposit, withdraw, and transfer actions.
 
-After this, the project will be running on your localhost. 
-Typically at http://localhost:3000/
+## Contract Details
+
+### State Variables
+
+- `owner`: The address of the account owner.
+- `balance`: The current balance of the account.
+
+### Events
+
+- `Deposit(uint256 amount)`: Triggered when a deposit occurs.
+- `Withdraw(uint256 amount)`: Triggered when a withdrawal occurs.
+- `Transfer(address indexed to, uint256 amount)`: Triggered when a transfer occurs, with the recipient's address and the transferred amount indexed.
+
+### Constructor
+
+- Initializes the contract with an owner and an initial balance.
+
+### Functions
+
+#### `getBalance() public view returns (uint256)`
+
+- Retrieves the current balance of the account.
+
+#### `deposit(uint256 _amount) public payable`
+
+- Allows the owner to deposit funds into the account.
+- Emits a `Deposit` event.
+
+#### `withdraw(uint256 _withdrawAmount) public`
+
+- Allows the owner to withdraw funds from the account.
+- Emits a `Withdraw` event.
+- Handles insufficient balance with a custom error message.
+
+#### `transfer(uint256 _transferAmount) public`
+
+- Allows the owner to transfer funds to a specific address.
+- Emits a `Transfer` event.
+- Handles insufficient balance with a require statement.
+
+## Usage
+
+Deploy the contract to an Ethereum-compatible blockchain using a tool like Remix or Truffle.
+
+## Author
+
+Donato, Zeno
+202011124@fit.edu.ph
+
+## Acknowledgments
+
+- Ethereum Community
